@@ -2,6 +2,16 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
 
   # GET /posts or /posts.json
+  #
+  
+  def feed 
+    @active_posts = Post.is_active.publish
+    @featured_posts = Post.is_featured
+
+    @feed_posts = @active_posts
+    @recent_publish_posts = @active_posts.publish
+  end
+
   def index
     @posts = Post.all
   end
@@ -65,6 +75,6 @@ class PostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.require(:post).permit(:title, :body)
+      params.require(:post).permit(:title, :body, :is_active, :is_featured, :publish_date)
     end
 end

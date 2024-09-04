@@ -1,0 +1,10 @@
+div id="#{dom_id post}"
+  
+  p
+
+    = link_to "#{post.title}", post_path(post)
+
+  p
+    =< post.body
+  p 
+    = post.publish_date.strftime("%B %d, %Y")

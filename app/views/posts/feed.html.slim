@@ -1,0 +1,16 @@
+p style="color: green" = notice
+
+h1 Feed
+
+#posts
+  h2 Featured
+  - @featured_posts.each do |post|
+    == render 'feed-post', post: post
+  
+
+#posts 
+  h2 Publish Posts
+  - @recent_publish_posts.each do |post|
+    == render 'feed-post', post: post
+
+

@@ -1,4 +1,4 @@
-= form_with(model: post) do |form|
+= form_with(model: post) do |form| 
   - if post.errors.any?
     div style="color: red"
       h2 = "#{pluralize(post.errors.count, "error")} prohibited this post from being saved:"
@@ -13,6 +13,18 @@
   div
     = form.label :body, style: "display: block"
     = form.text_area :body
+
+  div 
+    = form.label :is_active
+    = form.check_box :is_active
+  
+  div 
+    = form.label :is_featured
+    = form.check_box :is_featured
+
+  div 
+    = form.label :publish_date
+    = form.date_field :publish_date
 
   div
     = form.submit
