@@ -1,11 +1,14 @@
 p style="color: green" = notice
 
-h1 Posts
+div class="container px-5"
+  div class="d-flex justify-content-between align-items-center shadow p-3 mb-5 bg-white rounded" 
+    h1 style="display: inline-block" Posts
+    = link_to "Add Post", new_post_path
 
-#posts
-  - @posts.each do |post|
-    == render post
-    p
-      = link_to "Show this post", post
+  #posts
+    - @posts.each do |post|
+      == render post
+      p
+  
 
-= link_to "New post", new_post_path
+

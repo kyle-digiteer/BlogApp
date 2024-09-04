@@ -1,4 +1,4 @@
-div id="#{dom_id post}"
+div id="#{dom_id post}" class="shadow p-3 mb-5 bg-white rounded"
   p
     strong Title:
     =< post.title
@@ -7,9 +7,14 @@ div id="#{dom_id post}"
     =< post.body
   p 
     strong Active:
-    = post.is_active 
+    =< post.is_active 
   p
     strong Featured:
-    = post.is_featured 
+    =< post.is_featured 
   p 
-    = post.publish_date.strftime("%B %d, %Y")
+    strong Date Published:
+    =< post.publish_date.strftime("%B %d, %Y")
+
+  = link_to "Show this post", post
+
+
