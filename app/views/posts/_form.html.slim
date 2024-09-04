@@ -22,6 +22,12 @@
     = form.label :is_featured
     = form.check_box :is_featured
 
+  div  
+    = form.label :image
+    = image_tag form.object.image_url if form.object.cached_image_data
+    = form.hidden_field :image, value: form.object.cached_image_data
+    = form.file_field :image
+
   div 
     = form.label :publish_date
     = form.date_field :publish_date

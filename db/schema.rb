@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_09_04_034115) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_04_073201) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,6 +22,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_04_034115) do
     t.boolean "is_active", default: true
     t.boolean "is_featured", default: false
     t.date "publish_date", default: "2024-09-04"
+    t.text "image_data"
   end
 
 end
