@@ -1,6 +1,4 @@
 div id="#{dom_id post}" class="shadow p-3 mb-5 bg-white rounded"
-
- 
   p
     strong Title:
     =< post.title
@@ -18,5 +16,7 @@ div id="#{dom_id post}" class="shadow p-3 mb-5 bg-white rounded"
     =< post.publish_date.strftime("%B %d, %Y")
 
   = link_to "Show this post", post
+  br
+  = link_to "Back to posts", posts_path
 
 

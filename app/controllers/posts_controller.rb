@@ -1,19 +1,21 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
-  before_action :authenticate_user!, except:[ :index, :show, :feed]
-  # GET /posts or /posts.json
+  before_action :authenticate_user!, except:[ :index, :show,]
+  before_action :check_if_belongs_to_user, except: [ :feed, :show, :new, :create, :index]
   #
-  
+    # create a feed that has only active user, active post, and featured
+    # your Post page should only view the Post that the current user create
+    # create a method to check if the user can go to show, update, delete of different post which is not his post
+    
   def feed 
-    @active_posts = Post.is_active.publish
     @featured_posts = Post.is_featured
-
-    @feed_posts = @active_posts
-    @recent_publish_posts = @active_posts.publish
+    @public_posts = Post.is_active.publish
   end
 
+
+# GET /posts or /posts.json
   def index
-    @posts = Post.all
+    @posts = current_user.post.publish
   end
 
   # GET /posts/1 or /posts/1.json
@@ -32,6 +34,7 @@ class PostsController < ApplicationController
   # POST /posts or /posts.json
   def create
     @post = Post.new(post_params)
+    @post.user_id = current_user.id
 
     respond_to do |format|
       if @post.save
@@ -75,6 +78,16 @@ class PostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.require(:post).permit(:title, :body, :is_active, :is_featured, :publish_date, :image)
+      params.require(:post).permit(:user_id, :title, :body, :is_active, :is_featured, :publish_date, :image)
     end
+
+    def check_if_belongs_to_user
+      unless @post.is_belong_to_user(current_user.id)
+        respond_to do |format|
+          format.html { redirect_to root_path, notice: "You do not have a permission to do this." }
+        end
+      end
+
+    end
+    
 end

@@ -1,7 +1,5 @@
-p style="color: green" = notice
 
-
-#posts  class="container"
+#posts  class="container mt-5 mb-5"
   h2 class="text-center" Featured
   - @featured_posts.each do |post|
     == render 'feed-post', post: post
@@ -9,7 +7,7 @@ p style="color: green" = notice
 
 #posts class="container mt-5 mb-5"
   h2 class="text-center" Publish Posts
-  - @recent_publish_posts.each do |post|
+  - @public_posts.each do |post|
     == render 'feed-post', post: post
 
 
