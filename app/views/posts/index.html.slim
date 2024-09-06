@@ -1,10 +1,17 @@
 
-div class="container px-5"
-  div class="d-flex justify-content-between align-items-center shadow p-3 mb-5 bg-white rounded" 
-    h1 style="display: inline-block" Posts
-    = link_to "Add Post", new_post_path
 
-  #posts
+div class="container px-5"
+  div class="d-flex justify-content-between align-items-center mt-5" 
+    h1 style="display: inline-block" Posts
+    / = link_to "Add Post", new_post_path
+  br
+  div id="new_posts"
+    == render partial: 'posts/form', locals: { post: Post.new } 
+  hr
+
+  br
+  br
+  div id="posts"
     - @posts.each do |post|
       == render post
       

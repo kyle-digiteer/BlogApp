@@ -30,7 +30,7 @@
 
   div 
     = form.label :publish_date
-    = form.date_field :publish_date
+    = form.date_field :publish_date, :value => Date.today
 
   div
     = form.submit
